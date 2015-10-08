@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Flyer;
+
 
 class FlyersController extends Controller
 {
@@ -16,6 +18,8 @@ class FlyersController extends Controller
     public function index()
     {
 
+        $flyers = Flyer::all();
+
         // alert()->success('Success Message', 'Optional Title');
         // Alert::message('Robots are working!');
         alert()->success(' Welcome to Flyers index Page! ', 'Welcome!')->autoclose(2000);;
@@ -23,8 +27,9 @@ class FlyersController extends Controller
         // $haha = \Session::all();
         // dd($haha);
         // \Session::forget('sweet_alert');
+        
 
-        return view('flyers.index');
+        return view('flyers.index', compact('flyers'));
     }
 
     /**
@@ -58,9 +63,11 @@ class FlyersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($zip, $street)
     {
-        //
+        $flyer =  Flyer::locatedAt($zip, $street);
+        // dd($flyer);
+        return view('flyers.show', compact('flyer'));
     }
 
     /**
