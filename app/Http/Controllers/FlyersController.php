@@ -65,6 +65,9 @@ class FlyersController extends Controller
      */
     public function show($zip, $street)
     {
+        \Session::forget('sweet_alert');
+        // alert()->success('You can see the flyer details here!', 'See the flyer details!')->autoclose(2000);
+
         $flyer =  Flyer::locatedAt($zip, $street);
         // dd($flyer);
         return view('flyers.show', compact('flyer'));

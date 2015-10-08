@@ -12,7 +12,7 @@ class Flyer extends Model
      *
      * @var array
      */
-    protected $fillable = ['street', 'city', 'zip', 'state', 'country', 'price', 'description'];
+    protected $fillable = ['photo', 'street', 'city', 'zip', 'state', 'country', 'price', 'description'];
 
 
     /**
