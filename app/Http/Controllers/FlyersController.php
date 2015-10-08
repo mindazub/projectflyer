@@ -15,6 +15,15 @@ class FlyersController extends Controller
      */
     public function index()
     {
+
+        // alert()->success('Success Message', 'Optional Title');
+        // Alert::message('Robots are working!');
+        alert()->success(' Welcome to Flyers index Page! ', 'Welcome!')->autoclose(2000);;
+        // \Session::flush();
+        // $haha = \Session::all();
+        // dd($haha);
+        // \Session::forget('sweet_alert');
+
         return view('flyers.index');
     }
 
@@ -25,6 +34,10 @@ class FlyersController extends Controller
      */
     public function create()
     {
+        // alert()->success('You can create Flyer here!', 'Fill in the form!')->autoclose(2000);
+        \Session::forget('sweet_alert');
+        alert()->success('You can create Flyer here!', 'Fill in the form!')->autoclose(2000);
+
         return view('flyers.create');
     }
 

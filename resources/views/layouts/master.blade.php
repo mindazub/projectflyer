@@ -23,6 +23,8 @@
 
 @yield('scripts.footer')
 
+@include('sweet::alert')
+
 
 
 </body>
