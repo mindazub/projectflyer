@@ -21,3 +21,8 @@ Route::get('{zip}/{street}', [
 	'as'=>'show_flyer',
 	'uses' => 'FlyersController@show'
 	]);
+
+Route::post('{zip}/{street}/photos', [
+	'as'=>'add_photo',
+	'uses' => 'FlyersController@addPhoto'
+	]);

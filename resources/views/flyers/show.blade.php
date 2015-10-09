@@ -13,7 +13,9 @@
 	</div>
 
 	<div class="col-md-9">
-	<!-- PHOTOS -->
+			<!-- PHOTOS -->
+			@if()
+
 	</div>
 	
 </div>
@@ -28,7 +30,7 @@
 <form id="addPhotosForm" 
       class="dropzone"
       method="POST"
-      action="#" 
+      action="/{{ $flyer->zip }}/{{ $flyer->street }}/photos" 
       >
 
 		{{ csrf_field() }}

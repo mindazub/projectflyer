@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests;
+use App\Http\Requests\FlyerRequest;
 use App\Http\Controllers\Controller;
 use App\Flyer;
 
@@ -52,9 +52,18 @@ class FlyersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(FlyerRequest $request)
     {
+        
+        //persist
+        $flyer = Flyer::create($request->all());
+        //redirect
+        // \Session::forget('sweet_alert');
+        // alert()->success('Youre Flyer has been created.', 'You created a Flyer!')->autoclose(2000);
+        // dd($flyer);
         //
+        return redirect()->to('flyers');
+        
     }
 
     /**
@@ -71,6 +80,18 @@ class FlyersController extends Controller
         $flyer =  Flyer::locatedAt($zip, $street);
         // dd($flyer);
         return view('flyers.show', compact('flyer'));
+    }
+
+    public function addPhoto(Request $request)
+    {
+        $file = $request->file('photo');        
+
+        $name = time() . '-' . $file->getClientOriginalName();
+
+        $file->move('images/photos', $name);
+
+        // dd($request->file('photo'));
+        return "Done";
     }
 
     /**

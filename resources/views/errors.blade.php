@@ -1,5 +1,6 @@
-<div class="alert alert-danger">
+
     @if(count($errors) > 0)
+    <div class="alert alert-danger">
         <ul>
             @foreach($errors->all() as $error)
                 <li>
@@ -7,5 +8,5 @@
                 </li>
             @endforeach
         </ul>
+    </div>
     @endif
-</div>
