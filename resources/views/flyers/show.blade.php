@@ -14,7 +14,20 @@
 
 	<div class="col-md-9">
 			<!-- PHOTOS -->
-			@if()
+			@if($flyer->photos->count() > 0 )
+
+			<h1>YRA FOTKIU</h1>
+
+				@foreach($flyer->photos as $flyerphoto)
+					<img src="{{ $flyerphoto->path }}">
+					<p></p>
+				@endforeach
+
+			@else
+
+			<h1>NERA FOTKIU </h1>
+
+			@endif
 
 	</div>
 	
