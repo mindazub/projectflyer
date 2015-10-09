@@ -16,7 +16,7 @@
 			<!-- PHOTOS -->
 			@if($flyer->photos->count() > 0 )
 
-			<h1>YRA FOTKIU</h1>
+			
 
 				@foreach($flyer->photos as $flyerphoto)
 					<img src="{{ $flyerphoto->path }}">
@@ -25,7 +25,7 @@
 
 			@else
 
-			<h1>NERA FOTKIU </h1>
+			<p id="addingPhotosText">You can add photos to your flyers. See the box below. </p>
 
 			@endif
 

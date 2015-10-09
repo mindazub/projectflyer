@@ -10,6 +10,10 @@ use App\Flyer;
 
 class FlyersController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -84,6 +88,11 @@ class FlyersController extends Controller
 
     public function addPhoto($zip, $street, Request $request)
     {
+        $this->validate($request, [
+            // damn it - mimes not mime
+            'photo' => 'required|mimes:jpg,jpeg,png,bmp'
+            ]);
+
         $file = $request->file('photo');        
 
         $name = time() . '-' . $file->getClientOriginalName();
@@ -127,8 +136,9 @@ class FlyersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($zip, $street)
     {
-        //
+        $flyer =  Flyer::locatedAt($zip, $street);
+
     }
 }
