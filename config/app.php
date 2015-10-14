@@ -146,6 +146,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
     ],
 
@@ -197,6 +198,7 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
 
         'Alert' => UxWeb\SweetAlert\SweetAlert::class,
+        'Image' => Intervention\Image\Facades\Image::class,
     ],
 
 ];

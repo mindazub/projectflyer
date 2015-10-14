@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="row">
-	<div class="col-md-3">
+	<div class="col-md-4">
 		<h1>{!! $flyer->street !!}</h1>
 		<h3>{!! $flyer->price !!}</h3>
 
@@ -12,28 +12,29 @@
 		<div class="description">{!! nl2br($flyer->description) !!}</div>
 	</div>
 
-	<div class="col-md-9">
-			<!-- PHOTOS -->
-			@if($flyer->photos->count() > 0 )
+	<div class="col-md-8 gallery">
 
-			
-
-				@foreach($flyer->photos as $flyerphoto)
-					<img src="/{{ $flyerphoto->path }}">
-					<p></p>
-				@endforeach
-
-			@else
-
-				@if(Auth::check())
-				<p id="addingPhotosText">You can add photos to your flyers. See the box below. </p>
-				@else 
-				<p id="addingPhotosText"><a href="/auth/login">Login</a> to add photos to your flyers. 
-				Not a member? Register <a href="/auth/register">here!</a>
-				</p>
-				@endif
+		<!-- PHOTOS -->
+		@if($flyer->photos->count() > 0 )
+			@foreach($flyer->photos->chunk(4) as $set)
+				<div class="row">
+						@foreach($set as $flyerphoto)
+						<div class="col-md-3 gallery__image">
+							<img src="/{{ $flyerphoto->thumbnail_path }}">
+							<p></p>
+						</div>
+						@endforeach
+				</div>
+			@endforeach
+		@else
+			@if(Auth::check())
+			<p id="addingPhotosText">You can add photos to your flyers. See the box below. </p>
+			@else 
+			<p id="addingPhotosText"><a href="/auth/login">Login</a> to add photos to your flyers. 
+			Not a member? Register <a href="/auth/register">here!</a>
+			</p>
 			@endif
-
+		@endif
 	</div>
 	
 </div>

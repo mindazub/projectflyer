@@ -29,7 +29,7 @@ class Flyer extends Model
         $street = str_replace('-', ' ', $street);
 
 
-        return static::where(compact('zip', 'street'))->first();
+        return static::where(compact('zip', 'street'))->firstOrFail();
     }
 
     /**
@@ -48,7 +48,7 @@ class Flyer extends Model
      * @param Photo $photo
      * @return Flyer
      */
-    public function addPhotoMod(Photo $photo)
+    public function addPhoto(Photo $photo)
     {
         return $this->photos()->save($photo);
     }
