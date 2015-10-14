@@ -19,14 +19,19 @@
 			
 
 				@foreach($flyer->photos as $flyerphoto)
-					<img src="{{ $flyerphoto->path }}">
+					<img src="/{{ $flyerphoto->path }}">
 					<p></p>
 				@endforeach
 
 			@else
 
-			<p id="addingPhotosText">You can add photos to your flyers. See the box below. </p>
-
+				@if(Auth::check())
+				<p id="addingPhotosText">You can add photos to your flyers. See the box below. </p>
+				@else 
+				<p id="addingPhotosText"><a href="/auth/login">Login</a> to add photos to your flyers. 
+				Not a member? Register <a href="/auth/register">here!</a>
+				</p>
+				@endif
 			@endif
 
 	</div>
@@ -35,19 +40,23 @@
 
 <hr/>
 
-<h2>
-	Add your photos:
-</h2>
+			@if(Auth::check())
+				<h2>
+				Add your photos:
+			</h2>
 
-	
-<form id="addPhotosForm" 
-      class="dropzone"
-      method="POST"
-      action="/{{ $flyer->zip }}/{{ $flyer->street }}/photos" 
-      >
+				
+			<form id="addPhotosForm" 
+			      class="dropzone"
+			      method="POST"
+			      action="{{ route('store_photo_path', [$flyer->zip, $flyer->street]) }}" 
+			      >
 
-		{{ csrf_field() }}
-</form>
+					{{ csrf_field() }}
+			</form>
+
+
+			@endif
 
 @stop
 
@@ -58,7 +67,7 @@
 	<script type="text/javascript">
 		Dropzone.options.addPhotosForm = {
 			paramName: 'photo',
-			maxFilesize: 5,
+			maxFilesize: 8,
 			acceptedFiles: '.jpg, .jpeg, .png, .bmp'
 		};
 	</script>

@@ -12,6 +12,8 @@ class CreateFlyerPhotos extends Migration
      */
     public function up()
     {
+        // DB::table('flyer_photos')->delete();
+
         Schema::create('flyer_photos', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('flyer_id')->unsigned();
@@ -28,8 +30,6 @@ class CreateFlyerPhotos extends Migration
      */
     public function down()
     {
-        Schema::table('flyer_photos', function (Blueprint $table) {
-            //
-        });
+        Schema::drop('flyer_photos');
     }
 }

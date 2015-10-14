@@ -12,6 +12,8 @@ class CreateFlyersTable extends Migration
      */
     public function up()
     {
+        // DB::table('flyers')->delete();
+
         Schema::create('flyers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('street');

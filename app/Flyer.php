@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Photo;
 
 class Flyer extends Model
 {
@@ -42,11 +43,12 @@ class Flyer extends Model
         return '$' . number_format($price / 100);
     }
 
+
     /**
      * @param Photo $photo
      * @return Flyer
      */
-    public function addPhoto(Photo $photo)
+    public function addPhotoMod(Photo $photo)
     {
         return $this->photos()->save($photo);
     }

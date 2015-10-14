@@ -23,6 +23,6 @@ Route::get('{zip}/{street}', [
 	]);
 
 Route::post('{zip}/{street}/photos', [
-	'as'=>'add_photo',
-	'uses' => 'FlyersController@addPhoto'
+	'as'=>'store_photo_path',
+	'uses' => 'FlyersController@addPhotoContr'
 	]);
