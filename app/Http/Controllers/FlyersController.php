@@ -17,6 +17,8 @@ class FlyersController extends Controller
 
     public function __construct(){
         $this->middleware('auth', ['except' => ['index', 'show']]);
+
+        // parent::__construct();
     }
     /**
      * Display a listing of the resource.
@@ -97,11 +99,27 @@ class FlyersController extends Controller
             'photo' => 'required|mimes:jpg,jpeg,png,bmp'
             ]);
 
+        $flyer = Flyer::locatedAt($zip, $street);
+
+        // GUARD is HERE
+        // 
+        if($flyer->user_id !== \Auth::id())
+        {
+            if($request->ajax()){
+                return response(['message' => 'No way, you are not the owner of this flyer.'], 403);
+            }
+
+            // flash('no way...!');
+            alert()->success('woohooo!');
+
+            return redirect('/');
+        }
+
 
         $photo = $this->makePhoto($request->file('photo'));
 
 
-        Flyer::locatedAt($zip, $street)->addPhoto($photo);
+        $flyer->addPhoto($photo);
 
         // dd($request->file('photo'));
         

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 use App\Photo;
 
@@ -13,7 +14,7 @@ class Flyer extends Model
      *
      * @var array
      */
-    protected $fillable = ['photo', 'street', 'city', 'zip', 'state', 'country', 'price', 'description'];
+    protected $fillable = ['photo', 'user_id', 'street', 'city', 'zip', 'state', 'country', 'price', 'description'];
 
 
     /**
@@ -74,5 +75,10 @@ class Flyer extends Model
     public function photos()
     {
         return $this->hasMany('App\Photo');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
     }
 }

@@ -2,12 +2,10 @@
 
 @section('content')
 
-<div class="row">
-	
-	<h1>Flyers:</h1>
+<h1>All users</h1>
 
 
-	<table class="table table-striped table-bordered">
+<table class="table table-striped table-bordered">
 			<thead>
 				<th>id</th>
 				<th>Zip</th>
@@ -17,11 +15,11 @@
 			</thead>
 
 			<tbody>
-			@foreach($flyers->all() as $flyer )
+			@foreach($users->all() as $user )
 			<tr> 
-				<td>{{ $flyer->id }}</td>
-				<td><a href="{{ route('show_flyer', [$flyer->zip, $flyer->street]) }}">{{ $flyer->zip }}</a></td>
-				<td>{{ $flyer->street }}</td>
+				<td>{{ $user->id }}</td>				
+				<td>{{ $user->name }}</td>
+				<td>{{ $user->email }}</td>
 				<td>
 				
 				</td>	
@@ -33,16 +31,8 @@
                 </td>
 			</tr>
 			@endforeach
-			</tbody>	
-
-			
-
-
+			</tbody>
 		</table>
-
-	
-</div>
-
 
 
 @stop

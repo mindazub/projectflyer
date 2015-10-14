@@ -6,6 +6,7 @@
 	<div class="col-md-4">
 		<h1>{!! $flyer->street !!}</h1>
 		<h3>{!! $flyer->price !!}</h3>
+		<h3>{!! $flyer->user->name !!}</h3>
 
 		<hr/>
 

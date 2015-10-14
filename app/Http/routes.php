@@ -1,12 +1,17 @@
 <?php
 
+Route::get('/', 'PagesController@home');
 
-
-Route::get('/', function () {
-    return view('pages.home');
-});
+// Route::get('/', function () {
+//     return view('pages.home');
+// });
 
 Route::resource('flyers', 'FlyersController');
+
+Route::get('users', [
+	'as'=>'show_users',
+	'uses' => 'UsersController@index'
+	]);
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
