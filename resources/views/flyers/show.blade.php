@@ -29,7 +29,11 @@
 			@endforeach
 		@else
 			@if(Auth::check())
-			<p id="addingPhotosText">You can add photos to your flyers. See the box below. </p>
+			<p id="addingPhotosText">You can add photos to this flyers, 
+			                         <br>
+			                         only, if you are an owner of this flyer.
+			                         <br>
+			                         See the instructions below. </p>
 			@else 
 			<p id="addingPhotosText"><a href="/auth/login">Login</a> to add photos to your flyers. 
 			Not a member? Register <a href="/auth/register">here!</a>
@@ -42,7 +46,7 @@
 
 <hr/>
 
-			@if(Auth::check())
+			@if(Auth::check()  && $flyer->user->id == \Auth::id() )
 				<h2>
 				Add your photos:
 			</h2>
