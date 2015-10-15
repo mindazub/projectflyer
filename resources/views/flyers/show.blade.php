@@ -6,7 +6,8 @@
 	<div class="col-md-4">
 		<h1>{!! $flyer->street !!}</h1>
 		<h3>{!! $flyer->price !!}</h3>
-		<h3>{!! $flyer->user->name !!}</h3>
+		<h5>{!! $flyer->user->name !!}</h5>
+		<h5>{!! $flyer->user->email !!}</h5>
 
 		<hr/>
 
@@ -46,7 +47,7 @@
 
 <hr/>
 
-			@if(Auth::check()  && $flyer->user->id == \Auth::id() )
+			@if(Auth::check()  && $flyer->ownedBy(\Auth::user()) )
 				<h2>
 				Add your photos:
 			</h2>

@@ -12,7 +12,8 @@
 				<th>id</th>
 				<th>Zip</th>
 				<th>Street</th>
-				<th>Photo</th>
+				<th>User Id</th>
+				<th>User Name</th>
 				<th>Remove</th>
 			</thead>
 
@@ -22,9 +23,12 @@
 				<td>{{ $flyer->id }}</td>
 				<td><a href="{{ route('show_flyer', [$flyer->zip, $flyer->street]) }}">{{ $flyer->zip }}</a></td>
 				<td>{{ $flyer->street }}</td>
-				<td>
-				
-				</td>	
+				@if(count($flyer->user) > 0)
+				<td>{{ $flyer->user->id }}</td>	
+				<td>{{ $flyer->user->name }}</td>
+				@else
+				<td></td><td></td>
+				@endif	
 				<!-- <form action="/flyers" method="DELETE">
 				    <input type="hidden" name="_method" value="PUT">
 				    <input type="hidden" name="_token" value="{{ csrf_token() }}">

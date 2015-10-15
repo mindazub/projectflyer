@@ -6,6 +6,11 @@
     <div class="col-md-6">
         {{ csrf_field() }}
 
+        <!--Hidden User in Form-->
+        <div class="form-group">
+        <input name="user_id" type="hidden" value="{{ Auth::user()->id }}">        
+        </div>
+
         <!-- street  Textfield -->
         <div class="form-group">
             <label for="street">Street :</label>

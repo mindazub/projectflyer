@@ -25,6 +25,9 @@ class FlyerRequest extends Request
     {
         return [
             'street' => 'required',
+
+            'user_id' => 'required',
+            
             'city' => 'required',
             'zip' => 'required',
             'country' => 'required',

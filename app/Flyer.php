@@ -27,8 +27,8 @@ class Flyer extends Model
     public static function locatedAt($zip, $street)
     {
 
-        $street = str_replace('-', ' ', $street);
-
+        $street = str_replace('-', '', $street);
+        // dd($street);
 
         return static::where(compact('zip', 'street'))->firstOrFail();
     }
@@ -81,4 +81,15 @@ class Flyer extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function owner() 
+    {
+        return $this->belongsTo('App\User', 'user_id');
+    }
+
+    public function ownedBy(User $user) 
+    {
+        return $this->user_id === $user->id;
+    }
+
 }

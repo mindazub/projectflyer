@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\FlyerRequest;
 use App\Http\Controllers\Controller;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-
+use Auth;
 use App\Flyer;
 
 
@@ -66,7 +66,11 @@ class FlyersController extends Controller
     {
         
         //persist
-        $flyer = Flyer::create($request->all());
+        //
+        $user_id = \Auth::user()->id;
+
+        $flyer = Flyer::create($request->all(), $user_id);
+        // dd($flyer);
         //redirect
         // \Session::forget('sweet_alert');
         // alert()->success('Youre Flyer has been created.', 'You created a Flyer!')->autoclose(2000);
@@ -103,16 +107,10 @@ class FlyersController extends Controller
 
         // GUARD is HERE
         // 
-        if($flyer->user_id !== \Auth::id())
+        if(! $flyer->ownedBy(\Auth::user()))
+        // if(! $flyer->ownedBy($this->user))
         {
-            if($request->ajax()){
-                return response(['message' => 'No way, you are not the owner of this flyer.'], 403);
-            }
-
-            // flash('no way...!');
-            alert()->success('woohooo!');
-
-            return redirect('/');
+           return $this->unauthorized($request);
         }
 
 
@@ -121,8 +119,17 @@ class FlyersController extends Controller
 
         $flyer->addPhoto($photo);
 
-        // dd($request->file('photo'));
         
+    }
+
+    protected function unauthorized(Request $request)
+    {
+         if($request->ajax())
+         {
+                return response(['message' => 'No way, you are not the owner of this flyer.'], 403);
+         }
+
+            return redirect('/');
     }
 
     protected function makePhoto(UploadedFile $file)
