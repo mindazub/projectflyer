@@ -22,8 +22,10 @@
 				<div class="row">
 						@foreach($set as $flyerphoto)
 						<div class="col-md-3 gallery__image">
-							<img src="/{{ $flyerphoto->thumbnail_path }}">
-							<p></p>
+							<a href="/{{ $flyerphoto->path }}" data-lightbox="haha">
+								<img src="/{{ $flyerphoto->thumbnail_path }}">
+								<p></p>
+							</a>
 						</div>
 						@endforeach
 				</div>
@@ -41,11 +43,9 @@
 			</p>
 			@endif
 		@endif
-	</div>
-	
-</div>
 
-<hr/>
+
+		<hr/>
 
 			@if(Auth::check()  && $flyer->ownedBy(\Auth::user()) )
 				<h2>
@@ -64,6 +64,13 @@
 
 
 			@endif
+
+
+	</div>
+	
+</div>
+
+			
 
 @stop
 

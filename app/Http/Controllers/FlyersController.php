@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Flyer;
 use App\Photo;
 use Illuminate\Http\Request;
 use App\Http\Requests\FlyerRequest;
 use App\Http\Controllers\Controller;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Auth;
-use App\Flyer;
+
 
 
 

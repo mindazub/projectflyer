@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Flyer;
 use Image;
 use Illuminate\Database\Eloquent\Model;
 use Symfony\Component\HttpFoundation\File\UploadedFile;

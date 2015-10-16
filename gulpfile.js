@@ -17,9 +17,11 @@ elixir(function(mix) {
             'sweetalert.min.js',
             'jquery.js',
             'bootstrap.js',
+            'lightbox.js'
         ],'./public/js/libs.js')
         .styles([
             'sweetalert.css',
+            'lightbox.css'
             // 'bootstrap.css',
         ],'./public/css/libs.css');
 });

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Flyer;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 use App\Photo;
@@ -30,7 +31,7 @@ class Flyer extends Model
         $street = str_replace('-', '', $street);
         // dd($street);
 
-        return static::where(compact('zip', 'street'))->firstOrFail();
+        return static::where(compact('zip', 'street'))->first();
     }
 
     /**
