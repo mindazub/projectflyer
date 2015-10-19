@@ -33,7 +33,9 @@
 				    <input type="hidden" name="_method" value="PUT">
 				    <input type="hidden" name="_token" value="{{ csrf_token() }}">
 				</form> -->
-                <td><a href="#"><button class="btn btn-xs btn-danger">Del</button></a></td>
+                <td>
+                <a href="#"><button class="btn btn-xs btn-info">Edit</button></a>
+                <a href="#"><button class="btn btn-xs btn-danger">Delete</button></a>
                 </td>
 			</tr>
 			@endforeach
